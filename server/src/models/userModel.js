@@ -1,21 +1,21 @@
-// const mongoose = require("mongoose")
+const mongoose = require("mongoose")
 
-// const userSchema = new mongoose.Schema(
-//     {
-//         // trim remove white space in letter
-//         name: { type: String, required: true, trim: true },
-//         email: { type: String, required: true, unique: true },
-//         password: { type: String, required: true },
-//         phone: { type: String, required: true },
-//         address: { type: String, required: true },
-//         answer: { type: String, required: true },
-//         role: { type: Number, default: 0 }, // 0 means false , 1 means true (also indicates admin)
+const userSchema = new mongoose.Schema(
 
-//     },
+    {
+        // trim remove white space in letter
+        email: { type: String, required: true, unique: true },
+        password: { type: String, required: true },
+        role: {
+            type: String,
+            required: true,
+            enum: ["admin", "manager", "user"]
+        },
+    },
 
-//     { timestamps: true, versionKey: false }
-// );
+    { timestamps: true, versionKey: false }
+);
 
-// // model
-// const userModels = mongoose.model("users", userSchema);
-// module.exports = userModels;
+// model
+const userModels = mongoose.model("users", userSchema);
+module.exports = userModels;
